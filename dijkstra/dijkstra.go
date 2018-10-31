@@ -114,4 +114,42 @@ Dijkstra(g,s) //simplified
 		return out, dist[t]
  */
 func Dijkstra(g Graph, s int, t int) ([]int, int) {
+	pq := PQueue(make([]Edge, 0))
+	heap.Push(&pq, Edge{s, 0})
+
+	dist := make(map[int]int)
+
+	for i := range g {
+		dist[i] = math.MaxInt32
+	}
+
+	prev := make(map[int]int)
+	dist[s] = 0
+
+	for len(pq) > 0 {
+		e := heap.Pop(&pq).(Edge)
+		u := e.V
+
+		for _, e := range g[e.V] {
+			v := e.V
+			d := e.D
+
+			if dist[v] > dist[u]+d {
+				dist[v] = dist[u] + d
+				prev[v] = u
+				heap.Push(&pq, Edge{v, dist[v],})
+			}
+		}
+	}
+
+	var out []int
+
+	for v, ok := prev[t]; ok; v, ok = prev[v] {
+		out = append([]int{v}, out...)
+		if v == s {
+			break
+		}
+	}
+
+	return out, dist[t]
 }

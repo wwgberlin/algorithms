@@ -42,12 +42,4 @@ func (h *IntHeap) Pop() interface{} {
 //every popped item will have to be converted back to an integer as Pop returns
 //the empty interface (interface{})
 func heapSort(a []int) {
-	dup := a
-	h := IntHeap(dup)
-
-	heap.Init(&h)
-
-	for i := range a {
-		a[len(a)-i-1] = heap.Pop(&h).(int)
-	}
 }
