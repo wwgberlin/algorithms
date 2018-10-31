@@ -15,11 +15,6 @@ func main() {
 //two slices, we call mergeSort on each, and then merge the two slices using
 // the given function merge that takes two sorted slices and merges them.
 func mergeSort(unsorted []int) []int {
-	if len(unsorted) < 2 {
-		return unsorted
-	}
-	l := len(unsorted) / 2
-	return merge(mergeSort(unsorted[:l]), mergeSort(unsorted[l:]))
 }
 
 func merge(lhs []int, rhs []int) []int {
