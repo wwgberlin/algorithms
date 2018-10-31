@@ -96,7 +96,6 @@ Dijkstra(g,s) //simplified
 
 	while pq is not empty
 		u := pq.pop
-		pq.pop();
 		for each v neighbor of u
 			alt := dist[u] + weight
 			if (dist[v] > alt) then
