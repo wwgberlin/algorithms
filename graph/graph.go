@@ -7,11 +7,13 @@ type Edge struct {
 	D int
 }
 
-type Graph [][]Edge //Adjacency list
+//Adjacency lis
+type Graph [][]int
+type WGraph [][]Edge
 
-func (g Graph) String() string {
+func (g WGraph) String() string {
 	var out string
-	for i := 0; i < len(g); i++ {
+	for i := range g {
 		out += fmt.Sprintf("%d:\n\t", i)
 		for j := 0; j < len(g[i]); j++ {
 			if j != 0 {
@@ -24,7 +26,29 @@ func (g Graph) String() string {
 	return out
 }
 
+func (g Graph) String() string {
+	var out string
+	for i := range g {
+		out += fmt.Sprintf("%d:\n\t", i)
+		out += fmt.Sprint( g[i])
+		out += "\n"
+	}
+	return out
+}
+
 func SampleGraph() Graph {
+	g := SampleGraphWeighted()
+	out := make(Graph, len(g))
+	for i := range g {
+		out[i] = make([]int, len(g[i]))
+		for j := range g[i] {
+			out[i][j] = g[i][j].V
+		}
+	}
+	return out
+}
+
+func SampleGraphWeighted() WGraph {
 	return [][]Edge{
 		{
 			{1, 4},
@@ -45,6 +69,7 @@ func SampleGraph() Graph {
 			{4, 9},
 		},
 		{
+			{0, 2},
 			{5, 20},
 			{5, 1},
 		},

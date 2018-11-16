@@ -10,6 +10,7 @@ func main() {
 	heapSort(s)
 	fmt.Println(s)
 }
+
 // An IntHeap is a min-heap of ints.
 type IntHeap []int
 
@@ -27,7 +28,7 @@ func (h *IntHeap) Pop() interface{} {
 	old := *h
 	n := len(old)
 	x := old[n-1]
-	*h = old[0 : n-1]
+	*h = old[0: n-1]
 	return x
 }
 
@@ -42,4 +43,10 @@ func (h *IntHeap) Pop() interface{} {
 //every popped item will have to be converted back to an integer as Pop returns
 //the empty interface (interface{})
 func heapSort(a []int) {
+	h := IntHeap(a)
+	heap.Init(&h)
+
+	for i := range a {
+		a[len(a)-i-1] = heap.Pop(&h).(int)
+	}
 }
