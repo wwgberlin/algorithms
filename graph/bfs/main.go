@@ -38,34 +38,13 @@ BFS(G, s)
 			u.color = BLACK
  */
 func BFS(g Graph, s int, t int) ([]int, int) {
-	queue := []int{s}
-	pi := make([]int, len(g))
-	dist := make([]int, len(g))
-	color := make([]uint8, len(g))
 
-	for i := range g {
-		dist[i] = Inifinity
-		color[i] = White
-		pi[i] = -1
-	}
 
-	dist[s] = 0
-	color[s] = Gray
-	pi[s] = -1
 
-	for len(queue) > 0 {
-		u := queue[0]
-		queue = queue[1:]
-		for _, v := range g[u] {
-			if color[v] == White {
-				color[v] = Gray
-				dist[v] = dist[u] + 1
-				pi[v] = u
-				queue = append(queue, v)
-			}
-			color[u] = Black
-		}
-	}
+
+
+	//leave this code in at the bottom to return
+	//the computed path and the distance
 
 	var out []int
 	for v := t; v != -1; v = pi[v] {

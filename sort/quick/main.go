@@ -30,12 +30,6 @@ To slice given slice a from 0 to l (not including l): a[:l]
 To slice given slice a from l to the end of a: a[l:]
  */
 func quicksort(unsorted []int) {
-	if len(unsorted) < 2 {
-		return
-	}
-	p:=partition(unsorted)
-	quicksort(unsorted[:p])
-	quicksort(unsorted[p+1:])
 }
 
 func swap(arr []int, i, j int) {

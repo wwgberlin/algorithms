@@ -41,41 +41,10 @@ function Dijkstra(Graph, source, target):
 func Dijkstra(g WGraph, s int, t int) ([]int, int) {
 	const Infinity = math.MaxInt32
 
-	pq := pqueue.NewPQueue()
-
-	dist := make([]int, len(g))
-
-	dist[s] = 0
-	for i := range g {
-		if s!=i {
-			dist[i] = Infinity
-		}
-		pq.AddWithPriority(i, dist[i])
-	}
 
 
-	prev := make([]*int, len(g))
-	heap.Init(pq)
-
-	for pq.Len() > 0 {
-		u := heap.Pop(pq).(int)
-
-		if u == t {
-			break
-		}
-
-		for _, e := range g[u] {
-			v := e.V
-			d := e.D
-
-			alt := dist[u] + d
-			if dist[v] > alt {
-				dist[v] = alt
-				prev[v] = &u
-				pq.DecreaseKey(v, dist[v])
-			}
-		}
-	}
+	//leave this code in at the bottom to return
+	//the computed path and the distance
 
 	var out []int
 	for v := &t; v != nil; v = prev[*v] {
